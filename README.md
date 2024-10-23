@@ -1,33 +1,50 @@
-# This is task submission 
+![image](https://github.com/user-attachments/assets/0e99ff41-0df7-4dce-9a24-e370d5f2f952)# Internship Task: Domain-Specific PDF Summarization & Keyword Extraction Pipeline 
+
+## Overview - 
+This project implements the PDF summarization and keyword generation pipeline for multiple Pdf's, adopting the concurrency and the updation of these data into MongoDB. 
+
+## Folder Structure - 
+- README.md: This file.
+- Dockerfile: to create image for efficient deployment and handling all the code and packages.
+- main.py: The main python code file.
+- requirements.txt: contain all the modules required to run this application.
+- compressed_wasserstoff_vid: video describing the approach to a problem.
 
 ## workflow:
 
 ### Dockerfile - 
-Dockerfile is used for the management of all the libraraies and modules by creating a self contained isolated space.
-This makes the pdeployment process easy by uploading this file to the github and then deploying it using the railway.app
-The railway identifies the dockerfile automatically and deploy it for you.
+Dockerfile is used for the management of all the libraries and modules by creating a self-contained isolated space.
+This makes the deployment process easy by uploading this file to GitHub and then deploying it using the railway.app
+The railway identifies the docker file automatically and deploys it for you.
 
 ### Requirements.txt - 
-in this file all the libraries and modules are typed so that this can be loaded via dockerfile to to the container and can be executed inside 
-it to ibstall all the packages inside it.
+in this file, all the libraries and modules are typed so that this can be loaded via the docker file to the container and can be executed inside 
+It is used to install all the packages inside it.
 
-### model of gpt-3.5 turbo is used via api key - 
-Api key is used which have the certaiil call limits.
+### model of GPT-3.5 turbo is used via API key - 
+An API key is used which has certain call limits.
 
-### Extraction of text form pdf's - 
+### Extraction of text from pdf's - 
 The text from the pdf's are extracted with the help of PyPDF2 
 
 ### Finding of domains - 
-the domains are find out with the help of the model whichc are most relevant to the particular pdf's text.
-because they will help us in finding the keywords which have the same context as of the domains.
+The domains that are most relevant to the particular pdf's text are found with the help of the model.
+because they will help us find the keywords that have the same context as the domains.
 
-### The text is splitted into the words - 
-The stopwords are loaded from the nltk libraray in which the nmore words like: ["are", "a", "an", "shall", "may","also", "under","within","every","any","all"] are updated because they don't help us in any way to find the keywords.
-Then the common words form the words whichc are also present in the stopwords are removed. Then all the words are passed to the Model along with the DOmains that we extracted.
-by joining them because in this way the token limit for model is to be satsfied always and reduce the latency time also for the application.
+## preprocessing of text for summarization - 
+The text is split into sentences which can collectively be sent to the model for the summarization task. 
+For this, there is a need to take care of the constraint of token limit for the model.
+LOGIC:
+In the code snippet below.
+The slicing technique is used to pass only the selected pair of sentences which satisfies the constraint. 
+Var - count is used to check for the token limit and later then also used as a flag to append even the last pair of sentences after the while loop is executed.
+![image](https://github.com/user-attachments/assets/519f3b74-885e-4fcd-9f62-16c3d2502d5a)
 
-### The text is splitted into the Sentences -
-the text is splitted into the sentence by using the .splut("."). as they will help us to generate the summary.
-The logic of checking is made to check that whether these sentences while passing to the model dont exceeds the token limit of the model.
-if the token limit starts to get more then that number of sentences are only passed to the model.
+
+### The text is split into the words - 
+The stopwords are loaded from the nltk library in which more words like: ["are", "a", "an", "shall", "may","also", "under","within","every","any","all"] are updated because they don't help us in any way to find the keywords.
+Then the common words from the words that are also present in the stopwords are removed. Then all the words are passed to the Model along with the DOmains that we extracted.
+By joining them because in this way the token limit for the model is to be satisfied always and reduce the latency time also text is split into the Sentences -
+the text is splitted into the sentence by using the .splut("."). As till help us to generate the summary.
+If the token limit starts to get more then that number of sentences arisnly passed to the model.
 
