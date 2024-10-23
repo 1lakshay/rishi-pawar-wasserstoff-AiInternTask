@@ -1,0 +1,6 @@
+nltk
+numpy
+pymongo
+fastapi
+PyPDF2
+openai
