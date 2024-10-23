@@ -35,8 +35,6 @@ because they will help us find the keywords that have the same context as the do
 The text is split into sentences which can collectively be sent to the model for the summarization task. 
 For this, there is a need to take care of the constraint of token limit for the model.
 LOGIC:
-![image](https://github.com/user-attachments/assets/0e99ff41-0df7-4dce-9a24-e370d5f2f952)
-
 In the code snippet below.
 The slicing technique is used to pass only the selected pair of sentences which satisfies the constraint. 
 Var - count is used to check for the token limit and later then also used as a flag to append even the last pair of sentences after the while loop is executed.
