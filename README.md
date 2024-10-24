@@ -5,6 +5,7 @@ This project implements the PDF summarization and keyword generation pipeline fo
 
 ## Folder Structure - 
 - README.md: This file.
+- db_from_API - MongoDB jSON format database file in which file_name, summary and keywords are stored.
 - Dockerfile: to create image for efficient deployment and handling all the code and packages.
 - main.py: The main python code file.
 - requirements.txt: contain all the modules required to run this application.
